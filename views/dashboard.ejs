@@ -1,0 +1,74 @@
+<div class="row">
+  <div class=" column">
+    <h1 class="mt-4">Please enter your desired Location</h1>
+    <p class="lead mb-3">Welcome <%= user.name %></p>
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+  </div>
+  <div class=" column">
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>Display driving directions</title>
+        <meta
+          name="viewport"
+          content="initial-scale=1,maximum-scale=1,user-scalable=no"
+        />
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js"></script>
+        <link
+          href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            padding: 0;
+            width: 30%;
+          }
+          .row {
+            display: flex;
+          }
+
+          /* Create two equal columns that sits next to each other */
+          .column {
+            flex: 20%;
+            padding: 10px;
+          }
+          #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+          }
+        </style>
+      </head>
+
+      <body>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.js"></script>
+        <link
+          rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.css"
+          type="text/css"
+        />
+        <div id="map"></div>
+
+        <script>
+          mapboxgl.accessToken =
+            "pk.eyJ1IjoiYndhZGFtc29uIiwiYSI6ImNqajZhNm1idDFzMjIza3A2Y3ZmdDV6YWYifQ.9NhptR7a9D0hzWXR51y_9w";
+          var map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/mapbox/streets-v9",
+            center: [-79.4512, 43.6568],
+            zoom: 13
+          });
+          map.addControl(
+            new MapboxDirections({
+              accessToken: mapboxgl.accessToken
+            }),
+            "top-left"
+          );
+        </script>
+      </body>
+    </html>
+  </div>
+</div>
